@@ -35,7 +35,7 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
-commentSchema.index({ tour: 1, user: 1 }, { unique: true });
+commentSchema.index({ blog: 1, user: 1 }, { unique: true });
 
 commentSchema.pre(/^find/, function () {
   this.populate({

@@ -36,7 +36,7 @@ exports.getAllBlogs = async (req, res) => {
 };
 exports.getBlog = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id).populate("comments");
     res.status(200).json({
       status: "success",
       data: {
