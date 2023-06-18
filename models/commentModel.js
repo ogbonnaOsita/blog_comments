@@ -11,8 +11,9 @@ const commentSchema = new mongoose.Schema(
       default: Date.now(),
     },
     blog: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Blog",
+      // type: mongoose.Schema.ObjectId,
+      // ref: "Blog",
+      type: String,
       required: [true, "Comment must belong to a blog"],
     },
     isParent: {
