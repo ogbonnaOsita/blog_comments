@@ -1,8 +1,11 @@
 const Comment = require("../models/commentModel");
+const Blog = require("../models/blogModel");
 
 exports.getAllComments = async (req, res) => {
   try {
-    const comments = await Comment.find();
+    let filter = {};
+    if (req.params.blogId) filter = { blog: req.params.blogId };
+    const comments = await Comment.find(filter);
     res.status(200).json({
       status: "success",
       result: comments.length,
@@ -37,6 +40,8 @@ exports.getComment = async (req, res) => {
 
 exports.createComment = async (req, res) => {
   try {
+    //Allow nested routes
+    if (!req.body.blog) req.body.blog = req.params.blogId;
     const newComment = await Comment.create(req.body);
     res.status(201).json({
       status: "success",
